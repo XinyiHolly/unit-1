@@ -122,7 +122,7 @@ function addEvents(){
 		alert('Hey, you clicked me!');
 	};
 
-	//activate the event when click the table
+	//activate the event when the table is clicked
 	$('table').on('click', clickme);
 };
 
