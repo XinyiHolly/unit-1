@@ -1,0 +1,17 @@
+/* Stylesheet by Xinyi Liu, 2017 */
+body {
+    margin: 0;
+}
+
+// '#' with id
+#mydiv {
+    background-color: red;
+    width: 80%;
+    margin: 0 auto;
+    height: 100px;
+}
+
+// '.' with calss
+.mydivclass {
+
+}
