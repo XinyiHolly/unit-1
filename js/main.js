@@ -3,6 +3,9 @@
 //initialize function called when the script loads
 function initialize(){
 	cities();
+	// call debugAjax
+	debugAjax();
+	jQueryAjax();
 };
 
 //function to create a table with cities and their populations
@@ -124,6 +127,58 @@ function addEvents(){
 
 	//activate the event when the table is clicked
 	$('table').on('click', clickme);
+};
+
+//ajax using jquery
+function jQueryAjax(){
+	//define a variable to hold the data
+	 var mydata;
+
+	 //basic jQuery ajax method
+	 $.ajax("data/MegaCities.geojson", {
+			 dataType: "json",
+			 // call callback function
+			 success: function(response){
+					 mydata = response;
+           jQueryCallback(response);
+					 //check the data
+					 console.log(mydata);
+			 }
+	 });
+
+	 //check the data
+	 //console.log(mydata);
+};
+
+function jQueryCallback(data){
+  //initialize a html text and assign a header to it
+	var htmlString = "<h3>javascript AJAX response text:</h3>";
+  //append JSON text to the html text
+	htmlString += JSON.stringify(data);
+	//append this html text to "mydiv" element as a paragraph
+  $("#mydiv").append("<p>"+htmlString+"</p>");
+};
+
+function debugCallback(response){
+	//initialize a html text and assign the first line to it
+	var htmlString = "GeoJSON data: <br/>";
+	//append JSON text to the html text
+  htmlString += JSON.stringify(response);
+	//append this html text to "mydiv" element as a paragraph
+	$("#mydiv").append("<p>"+htmlString+"</p>");
+};
+
+function debugAjax(){
+
+  //basic jQuery ajax method
+	$.ajax("data/MegaCities.geojson", {
+		dataType: "json",
+		success: function(response){
+
+      //call callback function
+			debugCallback(response);
+		}
+	});
 };
 
 //call the initialize function when the document has loaded
